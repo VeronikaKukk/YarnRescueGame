@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctlt4i5jgfwbt"]
+
+[ext_resource type="Script" path="res://Scripts/Credits.gd" id="1_o0ueq"]
+[ext_resource type="Texture2D" uid="uid://5thw3lyr1b3s" path="res://Graphics/bg3.PNG" id="2_0v7xy"]
+[ext_resource type="Texture2D" uid="uid://ct7gkj5rhbbh1" path="res://Graphics/krolll.jpg" id="3_nnwaf"]
+[ext_resource type="StyleBox" uid="uid://c3t2q1kb70wu0" path="res://Styles/normal_button.tres" id="3_xca5y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muinr"]
+bg_color = Color(0.576471, 0.254902, 0.270588, 0.462745)
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o0ueq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -248.0
+offset_top = -176.0
+offset_right = 392.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0v7xy")
+flip_h = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muinr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Made by ron88
+ while thinking about Krõll.
+
+
+
+
+
+
+
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/VBoxContainer/VBoxContainer"]
+position = Vector2(130, 188)
+scale = Vector2(0.150404, 0.149901)
+texture = ExtResource("3_nnwaf")
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("3_xca5y")
+text = "Back"
+
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

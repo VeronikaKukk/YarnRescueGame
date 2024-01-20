@@ -1,0 +1,183 @@
+[gd_scene load_steps=10 format=3 uid="uid://tlbk8gavaado"]
+
+[ext_resource type="Script" path="res://Scripts/game_start_screen.gd" id="1_514b0"]
+[ext_resource type="Texture2D" uid="uid://daosyngm7bytx" path="res://Graphics/menu_background.JPEG" id="2_2d71n"]
+[ext_resource type="StyleBox" uid="uid://c3t2q1kb70wu0" path="res://Styles/normal_button.tres" id="3_36lmm"]
+[ext_resource type="Texture2D" uid="uid://dqgn65xfxpifj" path="res://Graphics/yarnrescue.png" id="3_74bss"]
+[ext_resource type="StyleBox" uid="uid://doyfs121w8a74" path="res://Styles/normal_mode_button.tres" id="4_0d12b"]
+[ext_resource type="StyleBox" uid="uid://dy2te457advfr" path="res://Styles/checkbutton.tres" id="4_d8fd8"]
+[ext_resource type="AudioStream" uid="uid://c7l58t6ax3dj" path="res://Audio/menu_background.mp3" id="5_3oal7"]
+[ext_resource type="PackedScene" uid="uid://caum51wr7vftu" path="res://Scenes/mouse_cursor.tscn" id="6_kcwtp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8cbw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="GameStartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_514b0")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1020, 1020)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2d71n")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8cbw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -236.5
+offset_top = -144.0
+offset_right = 236.5
+offset_bottom = 277.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="GameName" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 60
+text = "Yarn Rescue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/VBoxContainer/GameName"]
+position = Vector2(236.5, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_74bss")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="Options" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("3_36lmm")
+text = "Options"
+
+[node name="Instructions" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("3_36lmm")
+text = "Instructions"
+
+[node name="Credits" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("3_36lmm")
+text = "Credits"
+
+[node name="CheckButton" type="CheckButton" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_d8fd8")
+theme_override_styles/pressed = ExtResource("4_d8fd8")
+theme_override_styles/disabled = ExtResource("4_d8fd8")
+theme_override_styles/hover = ExtResource("4_d8fd8")
+theme_override_styles/hover_pressed = ExtResource("4_d8fd8")
+theme_override_styles/focus = ExtResource("4_d8fd8")
+text = "Multiple color yarn"
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Mode1" type="Button" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("4_0d12b")
+text = "Normal"
+
+[node name="Mode2" type="Button" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("4_0d12b")
+text = "Hard"
+
+[node name="Mode3" type="Button" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("4_0d12b")
+text = "Endless"
+
+[node name="Mode4" type="Button" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("4_0d12b")
+text = "Custom
+"
+
+[node name="Quit" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("3_36lmm")
+text = "Quit"
+
+[node name="MenuBackgroundMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_3oal7")
+volume_db = -12.0
+bus = &"music"
+
+[node name="mouse_cursor" parent="." instance=ExtResource("6_kcwtp")]
+
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Instructions" to="." method="_on_instructions_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/Mode1" to="." method="_on_mode_1_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/Mode2" to="." method="_on_mode_2_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/Mode3" to="." method="_on_mode_3_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/Mode4" to="." method="_on_mode_4_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

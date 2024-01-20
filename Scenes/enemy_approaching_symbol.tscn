@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbw1ta6sh67vl"]
+
+[ext_resource type="Texture2D" uid="uid://bletgi3exrgav" path="res://Graphics/Group 14.PNG" id="1_auu4u"]
+
+[node name="EnemyApproachingSymbol" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.771429, 0.771429)
+texture = ExtResource("1_auu4u")
+region_enabled = true
+region_rect = Rect2(200.171, 0.205719, 98.4222, 102.93)

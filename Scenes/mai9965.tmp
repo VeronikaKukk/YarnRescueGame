@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://du3w2lep6wygy"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_s1t3p"]
+[ext_resource type="PackedScene" uid="uid://dcwacxhk077gt" path="res://Scenes/wall.tscn" id="2_xdkkr"]
+[ext_resource type="Script" path="res://Scripts/game_timer.gd" id="3_iqssg"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_s1t3p")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall2" parent="Walls" instance=ExtResource("2_xdkkr")]
+position = Vector2(560, -48)
+scale = Vector2(3.24, 3.12)
+
+[node name="Wall3" parent="Walls" instance=ExtResource("2_xdkkr")]
+position = Vector2(1200, 304)
+rotation = 1.5708
+scale = Vector2(1.68185, 2.75101)
+
+[node name="Wall4" parent="Walls" instance=ExtResource("2_xdkkr")]
+position = Vector2(-64, 328)
+rotation = 1.5708
+scale = Vector2(2.44, 4.04)
+
+[node name="Wall" parent="Walls" instance=ExtResource("2_xdkkr")]
+position = Vector2(536, 704)
+scale = Vector2(3.12, 3.72)
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="Balls" type="Node" parent="."]
+
+[node name="GameTimer" type="Timer" parent="."]
+script = ExtResource("3_iqssg")
+
+[connection signal="timeout" from="GameTimer" to="GameTimer" method="_on_timeout"]

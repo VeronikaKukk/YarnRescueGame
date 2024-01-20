@@ -1,0 +1,85 @@
+[gd_scene load_steps=16 format=3 uid="uid://b0irgkx23s6y3"]
+
+[ext_resource type="Script" path="res://Scripts/ball.gd" id="1_yp8fh"]
+[ext_resource type="Texture2D" uid="uid://c6ep360y3hhwg" path="res://Graphics/yarn2.PNG" id="2_nromq"]
+[ext_resource type="Texture2D" uid="uid://b1cs8x5agd5k6" path="res://Graphics/yarn.PNG" id="2_ope3i"]
+[ext_resource type="AudioStream" uid="uid://bqm6owcbuoe3y" path="res://Audio/click_on_yarn.ogg" id="3_j360x"]
+[ext_resource type="Texture2D" uid="uid://bhr4qcx3ls27j" path="res://Graphics/yarn3.PNG" id="4_fk45y"]
+[ext_resource type="AudioStream" uid="uid://dammh25m2mtsr" path="res://Audio/342532__sgrowe__light-thud-2.wav" id="4_l6fnv"]
+[ext_resource type="Texture2D" uid="uid://kulyrg3unlxs" path="res://Graphics/yarn4.PNG" id="5_bhxv8"]
+[ext_resource type="AudioStream" uid="uid://cin3fpoy10a34" path="res://Audio/yarn_collide.mp3" id="5_cp8re"]
+[ext_resource type="Texture2D" uid="uid://ddroi002p5xyf" path="res://Graphics/yarn5.PNG" id="6_gmvge"]
+[ext_resource type="Texture2D" uid="uid://b5k2qnx7krdrj" path="res://Graphics/hover.PNG" id="6_rlmpw"]
+[ext_resource type="Texture2D" uid="uid://bhao7kyfd8j5v" path="res://Graphics/yarn6.PNG" id="7_l1rfj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vq4ai"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kgrwp"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7lpq"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jaeup"]
+streams_count = 1
+random_pitch = 3.0
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("5_cp8re")
+stream_0/weight = 1.0
+
+[node name="Ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_vq4ai")
+gravity_scale = 0.0
+script = ExtResource("1_yp8fh")
+texture_choices = Array[Texture]([ExtResource("2_ope3i"), ExtResource("2_nromq"), ExtResource("4_fk45y"), ExtResource("5_bhxv8"), ExtResource("6_gmvge"), ExtResource("7_l1rfj")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.138911, 0.138911)
+texture = ExtResource("2_nromq")
+
+[node name="hoverring" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.139, 0.139)
+texture = ExtResource("6_rlmpw")
+
+[node name="BallCollision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_kgrwp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="BallMouseCollision" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4.497, 4.497)
+shape = SubResource("CircleShape2D_u7lpq")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MaxHoldTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="PickUpActive" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_j360x")
+volume_db = 5.0
+bus = &"soundeffects"
+
+[node name="PickUpNonActive" type="AudioStreamPlayer2D" parent="."]
+bus = &"soundeffects"
+
+[node name="DropDown" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_l6fnv")
+volume_db = 15.0
+bus = &"soundeffects"
+
+[node name="YarnCollide" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_jaeup")
+volume_db = -20.0
+bus = &"soundeffects"
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="MaxHoldTimer" to="." method="_on_max_hold_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

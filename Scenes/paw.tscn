@@ -1,0 +1,100 @@
+[gd_scene load_steps=25 format=3 uid="uid://cfk6yqjobgiyt"]
+
+[ext_resource type="Script" path="res://Scripts/paw.gd" id="1_1dt3v"]
+[ext_resource type="Texture2D" uid="uid://beeah8cm6sswh" path="res://Graphics/paw1.PNG" id="2_avbp0"]
+[ext_resource type="Texture2D" uid="uid://fomthqt2vmu1" path="res://Graphics/paw2.PNG" id="3_7kadr"]
+[ext_resource type="PackedScene" uid="uid://dbw1ta6sh67vl" path="res://Scenes/enemy_approaching_symbol.tscn" id="3_qy1nk"]
+[ext_resource type="AudioStream" uid="uid://co1r70tq3odyw" path="res://Audio/88475__davidou__chat.wav" id="4_cybnp"]
+[ext_resource type="Texture2D" uid="uid://n2jrf3x3en0j" path="res://Graphics/paw3.PNG" id="4_iv7vj"]
+[ext_resource type="AudioStream" uid="uid://b0lf3m6ta165k" path="res://Audio/260179__swatkamus__kitty-meow.wav" id="5_8rcoo"]
+[ext_resource type="Texture2D" uid="uid://dox4dac3rt8vm" path="res://Graphics/paw4.PNG" id="5_pfawh"]
+[ext_resource type="Texture2D" uid="uid://ba0pf8rk0guoo" path="res://Graphics/paw5.PNG" id="6_1ton0"]
+[ext_resource type="AudioStream" uid="uid://ds3uso1uvj1y7" path="res://Audio/333916__lextrack__cat-meowing.mp3" id="6_iu40b"]
+[ext_resource type="Texture2D" uid="uid://cgjkwbnyis0o5" path="res://Graphics/paw_open.PNG" id="7_7628v"]
+[ext_resource type="AudioStream" uid="uid://2bpu01n0d0x7" path="res://Audio/362652__trngle__cat-meow.wav" id="7_sbvor"]
+[ext_resource type="Texture2D" uid="uid://bixjrqd8l1wmd" path="res://Graphics/Group 6.PNG" id="8_mqk6l"]
+[ext_resource type="AudioStream" uid="uid://dkryqjmojvlte" path="res://Audio/448084__breviceps__cute-kitten-meow.wav" id="8_vx6vn"]
+[ext_resource type="AudioStream" uid="uid://bojb4e5h633by" path="res://Audio/436541__mafon2__cat-meow.wav" id="9_8a2cn"]
+[ext_resource type="Texture2D" uid="uid://v601rkocq1sn" path="res://Graphics/Group 7.PNG" id="9_co7vt"]
+[ext_resource type="Texture2D" uid="uid://b3r8gi263qf4u" path="res://Graphics/Group 9.PNG" id="10_2from"]
+[ext_resource type="AudioStream" uid="uid://cixsqr2qvg2wo" path="res://Audio/534269__patchytherat__meow-1.mp3" id="10_hdlj0"]
+[ext_resource type="Texture2D" uid="uid://1jumfap8isw4" path="res://Graphics/Group 11.PNG" id="11_p5c4a"]
+[ext_resource type="AudioStream" uid="uid://btr0ntel0ts0o" path="res://Audio/569528__jbdelgado__cats-meow.mp3" id="11_s0m4h"]
+[ext_resource type="AudioStream" uid="uid://b8gi4hdkt3f80" path="res://Audio/698633__suicdxsaturday__meow51252153-2.ogg" id="12_r2hq7"]
+
+[sub_resource type="Curve2D" id="Curve2D_okjuv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -8, -156.801, 25.4271, 156.801, -25.4271, 144, -384, 0, 0, 0, 0, 344, -16, 0, 0, 0, 0, 360, 488)
+}
+point_count = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmmwf"]
+size = Vector2(96.5079, 106)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c4rtk"]
+streams_count = 9
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("4_cybnp")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_8rcoo")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("6_iu40b")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("7_sbvor")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("8_vx6vn")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("9_8a2cn")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("10_hdlj0")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("11_s0m4h")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("12_r2hq7")
+stream_8/weight = 1.0
+
+[node name="Paw" type="Node2D"]
+scale = Vector2(0.994737, 1)
+script = ExtResource("1_1dt3v")
+texture_choices = Array[Texture]([ExtResource("2_avbp0"), ExtResource("3_7kadr"), ExtResource("4_iv7vj"), ExtResource("5_pfawh"), ExtResource("6_1ton0")])
+texture_choices2 = Array[Texture]([ExtResource("7_7628v"), ExtResource("8_mqk6l"), ExtResource("9_co7vt"), ExtResource("10_2from"), ExtResource("11_p5c4a")])
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, 64)
+curve = SubResource("Curve2D_okjuv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, 392)
+v_offset = 400.0
+rotates = false
+loop = false
+
+[node name="pawcomponent" type="Node2D" parent="Path2D/PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/pawcomponent"]
+position = Vector2(0, -48)
+texture = ExtResource("2_avbp0")
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D/pawcomponent"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/pawcomponent/Area2D"]
+position = Vector2(0, -12)
+scale = Vector2(1, 4)
+shape = SubResource("RectangleShape2D_tmmwf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Path2D/PathFollow2D/pawcomponent"]
+position = Vector2(0, 4.00002)
+scale = Vector2(6.4, 25.2)
+
+[node name="EnemyApproachingSymbol" parent="." instance=ExtResource("3_qy1nk")]
+position = Vector2(0, -56)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="PawMeowing" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_c4rtk")
+bus = &"soundeffects"
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/pawcomponent/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="screen_exited" from="Path2D/PathFollow2D/pawcomponent/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

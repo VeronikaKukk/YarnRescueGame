@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://du3w2lep6wygy"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_s1t3p"]
+[ext_resource type="Texture2D" uid="uid://pxeof06ga2fx" path="res://Graphics/new_bg.PNG" id="2_smhoq"]
+[ext_resource type="PackedScene" uid="uid://dcwacxhk077gt" path="res://Scenes/wall.tscn" id="2_xdkkr"]
+[ext_resource type="Texture2D" uid="uid://dhp0ajqrmp1kh" path="res://Graphics/bg_light.PNG" id="3_ihij6"]
+[ext_resource type="Script" path="res://Scripts/game_timer.gd" id="3_iqssg"]
+[ext_resource type="Script" path="res://Scripts/game_hud.gd" id="4_jayos"]
+[ext_resource type="AudioStream" uid="uid://64832xfsmjt1" path="res://Audio/673325__seth_makes_sounds__relaxing-background-music.mp3" id="5_ncvq3"]
+[ext_resource type="PackedScene" uid="uid://caum51wr7vftu" path="res://Scenes/mouse_cursor.tscn" id="6_a5ex7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvk5y"]
+bg_color = Color(0.780392, 0.552941, 0, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_s1t3p")
+bg_textures = Array[Texture]([ExtResource("2_smhoq"), ExtResource("3_ihij6")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -280.0
+offset_top = -176.0
+offset_right = 1640.0
+offset_bottom = 904.0
+texture = ExtResource("2_smhoq")
+expand_mode = 1
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall2" parent="Walls" instance=ExtResource("2_xdkkr")]
+position = Vector2(560, -48)
+scale = Vector2(4.22211, 3.11005)
+
+[node name="Wall3" parent="Walls" instance=ExtResource("2_xdkkr")]
+position = Vector2(1328, 304)
+rotation = 1.5708
+scale = Vector2(2.32185, 2.75101)
+
+[node name="Wall4" parent="Walls" instance=ExtResource("2_xdkkr")]
+position = Vector2(-64, 328)
+rotation = 1.5708
+scale = Vector2(2.44, 4.04)
+
+[node name="Wall" parent="Walls" instance=ExtResource("2_xdkkr")]
+position = Vector2(664, 776)
+scale = Vector2(3.12, 3.72)
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="Balls" type="Node" parent="."]
+
+[node name="GameTimer" type="Timer" parent="."]
+script = ExtResource("3_iqssg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("4_jayos")
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.09375
+anchor_top = 0.0777778
+anchor_right = 0.15
+anchor_bottom = 0.136111
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseButton" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.0625
+anchor_top = 0.0777778
+anchor_right = 0.0859375
+anchor_bottom = 0.127778
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvk5y")
+text = "I I"
+metadata/_edit_use_anchors_ = true
+
+[node name="mouse_cursor" parent="CanvasLayer" instance=ExtResource("6_a5ex7")]
+
+[node name="ColorMode" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.0777778
+anchor_right = 0.0484375
+anchor_bottom = 0.127778
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+text = "L"
+metadata/_edit_use_anchors_ = true
+
+[node name="GameBackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("5_ncvq3")
+volume_db = 10.0
+bus = &"music"
+
+[connection signal="timeout" from="GameTimer" to="GameTimer" method="_on_timeout"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorMode" to="." method="_on_color_mode_pressed"]

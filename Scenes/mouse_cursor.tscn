@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://caum51wr7vftu"]
+
+[ext_resource type="Texture2D" uid="uid://fv7uvgfinlg1" path="res://Graphics/cursor1.PNG" id="1_qmqpb"]
+[ext_resource type="Script" path="res://Scripts/mouse_cursor.gd" id="2_t1wmg"]
+[ext_resource type="Texture2D" uid="uid://dq26is2pnsb5b" path="res://Graphics/cursor2.PNG" id="3_ffnm3"]
+
+[node name="mouse_cursor" type="Sprite2D"]
+process_mode = 3
+top_level = true
+visibility_layer = 524288
+z_index = 4096
+rotation = -0.610865
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_qmqpb")
+script = ExtResource("2_t1wmg")
+basic_cursor = ExtResource("1_qmqpb")
+click_cursor = ExtResource("3_ffnm3")

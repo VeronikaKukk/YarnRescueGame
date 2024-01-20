@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqr78f0n5xc0b"]
+
+[ext_resource type="StyleBox" uid="uid://dqqp6gkriuji" path="res://Styles/sliders.tres" id="1_ej8gf"]
+[ext_resource type="Texture2D" uid="uid://cmf4x2iml2dt0" path="res://Graphics/slider_icon.PNG" id="1_rtuvi"]
+[ext_resource type="Script" path="res://Scripts/volume_change.gd" id="1_uale3"]
+[ext_resource type="Texture2D" uid="uid://s0lpxpt1cbms" path="res://Graphics/slider_icon2.PNG" id="2_w6x08"]
+[ext_resource type="StyleBox" uid="uid://d261jujc0okct" path="res://Styles/slider_grabber.tres" id="4_afkfu"]
+[ext_resource type="StyleBox" uid="uid://gsayxgoavelr" path="res://Styles/slider_grabber_highlight.tres" id="4_b2h25"]
+
+[node name="HSlider" type="HSlider"]
+offset_right = 8.0
+offset_bottom = 16.0
+theme_override_icons/grabber = ExtResource("1_rtuvi")
+theme_override_icons/grabber_highlight = ExtResource("2_w6x08")
+theme_override_icons/tick = ExtResource("1_rtuvi")
+theme_override_styles/slider = ExtResource("1_ej8gf")
+theme_override_styles/grabber_area = ExtResource("4_afkfu")
+theme_override_styles/grabber_area_highlight = ExtResource("4_b2h25")
+max_value = 1.0
+step = 0.001
+script = ExtResource("1_uale3")
+
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

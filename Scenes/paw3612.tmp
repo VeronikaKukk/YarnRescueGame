@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfk6yqjobgiyt"]
+
+[ext_resource type="Script" path="res://Scripts/paw.gd" id="1_1dt3v"]
+[ext_resource type="Texture2D" uid="uid://b25or1k6suy6" path="res://icon.svg" id="1_d6vor"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmmwf"]
+size = Vector2(48, 200)
+
+[node name="Paw" type="Node2D"]
+script = ExtResource("1_1dt3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.580392, 0.705882, 0, 1)
+scale = Vector2(0.5, 1.625)
+texture = ExtResource("1_d6vor")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tmmwf")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(2.4, 10)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

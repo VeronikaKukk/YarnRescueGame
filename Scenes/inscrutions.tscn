@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpwdh7paqa1ne"]
+
+[ext_resource type="Script" path="res://Scripts/inscrutions.gd" id="1_dqd7v"]
+[ext_resource type="Texture2D" uid="uid://5thw3lyr1b3s" path="res://Graphics/bg3.PNG" id="2_6fymf"]
+[ext_resource type="StyleBox" uid="uid://c3t2q1kb70wu0" path="res://Styles/normal_button.tres" id="3_ijy0n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrn3y"]
+bg_color = Color(0.576471, 0.254902, 0.270588, 0.462745)
+
+[node name="Inscrutions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dqd7v")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -424.0
+offset_right = 528.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.263093
+texture = ExtResource("2_6fymf")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xrn3y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Instructions"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "
+Objective:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Your goal is to not let other cats steal your yarn balls.
+The game ends if you have fewer than 2 yarn balls remaining
+ or when the timer runs out.
+There is a time limit for holding a yarn ball."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "
+Controls:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Click left mouse on a yarn ball and hold it down to control a yarn ball.
+ESC for pause.
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("3_ijy0n")
+text = "    Back    "
+
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

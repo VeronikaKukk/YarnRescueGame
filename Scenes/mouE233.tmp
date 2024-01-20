@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://caum51wr7vftu"]
+
+[ext_resource type="Texture2D" uid="uid://fv7uvgfinlg1" path="res://Graphics/cursor1.PNG" id="1_qmqpb"]
+[ext_resource type="Script" path="res://Scripts/mouse_cursor.gd" id="2_t1wmg"]
+[ext_resource type="Texture2D" uid="uid://dq26is2pnsb5b" path="res://Graphics/cursor2.PNG" id="3_ffnm3"]
+
+[node name="mouse_cursor" type="CanvasLayer"]
+process_mode = 3
+process_priority = 1
+layer = 2
+rotation = -0.698132
+scale = Vector2(0.15, 0.15)
+transform = Transform2D(0.114907, -0.0964182, 0.0964182, 0.114907, 0, 0)
+script = ExtResource("2_t1wmg")
+basic_cursor = ExtResource("1_qmqpb")
+click_cursor = ExtResource("3_ffnm3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
